@@ -62,10 +62,10 @@ header nav {
 }
 
 header nav a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     margin: 0 15px;
-    font-size: 1.2em;
+    font-size: 1.0em;
     font-weight: 500;
     padding: 10px 15px;
     border-radius: 5px;
