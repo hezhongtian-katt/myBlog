@@ -11,26 +11,37 @@ body {
 /* 顶部（Header） */
 header {
     background: url('image/header.JPG') no-repeat center center/cover;
-    background-size: cover;
-    filter: brightness(0.8);
+    background-size: cover; /* 确保背景图充满区域 */
     position: relative;
-    color: #fff;
-    padding: 100px 20px;
+    color: #a19e9e;
+    padding: 100px 20px;  /* 默认在大屏上留出足够的顶部空间 */
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 2.5em;
     font-weight: 600;
     letter-spacing: 2px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 15px rgba(1, 13, 194, 0.2);
     border-radius: 10px;
     margin: 20px 0;
     transition: background-size 0.5s ease, filter 0.5s ease;
 }
 
+/* 为 header 添加文本覆盖层 */
+header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* 为文字提供更好的对比度 */
+    border-radius: 10px;
+    z-index: -1;
+}
+
 /* 背景图的放大效果：鼠标悬停时放大图片 */
 header:hover {
-    background-size: 130%;
-    filter: brightness(0.6);
+    background-size: cover; /* 保持图片适应屏幕 */
 }
 
 /* 为 header 添加文本覆盖层 */
@@ -180,31 +191,38 @@ footer {
     }
 }
 
-/* 超小屏幕（如手机横屏或更小设备） */
-@media (max-width: 480px) {
+/* 针对手机竖屏的调整 */
+@media (max-width: 768px) {
     header {
-        padding: 60px 10px; /* 更小的内边距 */
+        padding: 50px 20px; /* 手机竖屏时减小顶部间距 */
+        font-size: 1.8em; /* 缩小字体 */
     }
 
     header h1 {
-        font-size: 1.5em; /* 更小的字体 */
+        font-size: 2.5em; /* 缩小标题字体，确保适应小屏 */
+    }
+    
+    header::after {
+        background: rgba(0, 0, 0, 0.3); /* 调整背景透明度，确保文字清晰 */
+    }
+}
+
+/* 针对超小屏幕的调整 */
+@media (max-width: 480px) {
+    header {
+        padding: 30px 20px; /* 更小的手机设备进一步缩小顶部间距 */
+        font-size: 1.6em; /* 进一步缩小字体 */
     }
 
-    header nav a {
-        font-size: 1em;
-        margin: 0 10px;
+    header h1 {
+        font-size: 2em; /* 调整标题字体大小，防止变得过大 */
     }
+}
 
-    main {
-        padding: 15px;
-    }
-
-    h2 {
-        font-size: 1.3em; /* 更小的标题 */
-    }
-
-    ul li {
-        padding: 8px;
-        font-size: 1em; /* 再次调整列表项文字大小 */
-    }
+/* 图片样式 */
+img {
+    max-width: 100%; /* 图片宽度不超过父容器宽度 */
+    height: auto; /* 保持比例 */
+    display: block; /* 去除图片下方空白 */
+    margin: 0 auto; /* 居中显示 */
 }
