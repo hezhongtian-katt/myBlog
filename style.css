@@ -59,13 +59,15 @@ header h1 {
 /* 导航菜单样式 */
 header nav {
     margin-top: 20px;
+    display: flex;
+    justify-content: center; /* 居中对齐 */
+    gap: 15px; /* 适当的间距 */
 }
 
 header nav a {
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.0em;
+    font-size: 1.2em;
     font-weight: 500;
     padding: 10px 15px;
     border-radius: 5px;
@@ -80,6 +82,15 @@ header nav a:hover {
 header nav a:active {
     transform: translateY(1px);
 }
+
+/* 响应式设计：针对手机 */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: row; /* 保证在手机上横向排列 */
+        justify-content: space-evenly; /* 使链接之间的间隔均等 */
+    }
+}
+
 
 /* 文章内容部分 */
 main {
