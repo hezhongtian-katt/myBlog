@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>欢迎来到我的博客</h1>
+        <h1>何中天の博客</h1>
         <nav>
             <a href="index.html">首页</a>
             <a href="about.html">关于我</a>
@@ -22,8 +22,8 @@
             <h2>最新文章</h2>
             <ul>
                 <!-- 更新文件路径为 /posts/post1.md 等 -->
-                <li><a href="#" onclick="loadMarkdown('posts/post1.md')">文章标题 1 - 2024年9月30日</a></li>
-                <li><a href="#" onclick="loadMarkdown('posts/post2.md')">文章标题 2 - 2024年10月1日</a></li>
+                <li><a href="#" onclick="loadMarkdown('posts/post1.md', event)">文章标题 1 - 2024年9月30日</a></li>
+                <li><a href="#" onclick="loadMarkdown('posts/post2.md', event)">文章标题 2 - 2024年10月1日</a></li>
             </ul>
         </section>
 
@@ -34,7 +34,7 @@
     </main>
     
     <footer>
-        <p>© 2024 我的博客. 版权所有。</p>
+        <p>© 2024 何中天and王景</p>
     </footer>
 
     <!-- 引入 marked.js 库 -->
@@ -43,7 +43,9 @@
     <!-- 加载并解析 Markdown 文件的 JavaScript 代码 -->
     <script>
         // 异步加载 Markdown 文件并解析为 HTML
-        async function loadMarkdown(filename) {
+        async function loadMarkdown(filename, event) {
+            event.preventDefault();  // 阻止默认行为，防止页面跳转回顶部
+
             try {
                 const response = await fetch(filename);
                 if (!response.ok) throw new Error("文件加载失败");
