@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的兴趣 - 何中天の博客</title>
+    <link rel="stylesheet" href="../style.css"> <!-- 相对路径指向父级的 style.css -->
+</head>
+<body>
+    <header>
+        <h1>兴趣</h1>
+        <nav>
+            <a href="../index.html">首页</a>
+            <a href="../about.html">关于我</a>
+            <a href="#">联系</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>我感兴趣的领域</h2>
+            <ul>
+                <!-- 使用 onclick 事件触发 JavaScript 方法来加载 Markdown 文件 -->
+                <li><a href="#" onclick="loadMarkdown('../posts/interests/basketball.md', event)">篮球</a></li>
+                <li><a href="#" onclick="loadMarkdown('../posts/interests/game.md', event)">游戏</a></li>
+            </ul>
+        </section>
+
+        <!-- 显示 Markdown 内容的区域 -->
+        <section id="content">
+            <h2>文章内容加载中...</h2>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 何中天and王景</p>
+    </footer>
+
+    <!-- 引入 marked.js 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- 加载并解析 Markdown 文件的 JavaScript 代码 -->
+    <script>
+        // 异步加载 Markdown 文件并解析为 HTML
+        async function loadMarkdown(filename, event) {
+            event.preventDefault(); // 阻止默认行为，防止页面跳转
+
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) throw new Error("文件加载失败");
+                const markdown = await response.text();
+                // 使用 marked.js 将 Markdown 转换为 HTML
+                document.getElementById('content').innerHTML = marked.parse(markdown);
+            } catch (error) {
+                console.error(error);
+                document.getElementById('content').innerHTML = "<p>无法加载文章内容，请稍后再试。</p>";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的博客</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 引入 Font Awesome 图标库 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -17,46 +19,18 @@
     </header>
     
     <main>
-        <!-- 文章列表 -->
-        <section>
-            <h2>最新文章</h2>
-            <ul>
-                <!-- 更新文件路径为 /posts/post1.md 等 -->
-                <li><a href="#" onclick="loadMarkdown('posts/post1.md', event)">文章标题 1 - 2024年9月30日</a></li>
-                <li><a href="#" onclick="loadMarkdown('posts/post2.md', event)">文章标题 2 - 2024年10月1日</a></li>
-            </ul>
-        </section>
-
-        <!-- 显示 Markdown 内容的区域 -->
-        <section id="content">
-            <h2>文章内容加载中...</h2>
-        </section>
+        <h2>私の物語</h2>
+        <ul>
+            <!-- 各类别的链接，添加 Font Awesome 图标 -->
+            <li><a href="pages/interests.html"><i class="fas fa-heart"></i> 兴趣</a></li>
+            <li><a href="stories.html"><i class="fas fa-book"></i> 故事</a></li>
+            <li><a href="opinions.html"><i class="fas fa-comment"></i> 观点</a></li>
+        </ul>
     </main>
     
     <footer>
         <p>© 2024 何中天and王景</p>
     </footer>
-
-    <!-- 引入 marked.js 库 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-    <!-- 加载并解析 Markdown 文件的 JavaScript 代码 -->
-    <script>
-        // 异步加载 Markdown 文件并解析为 HTML
-        async function loadMarkdown(filename, event) {
-            event.preventDefault();  // 阻止默认行为，防止页面跳转回顶部
-
-            try {
-                const response = await fetch(filename);
-                if (!response.ok) throw new Error("文件加载失败");
-                const markdown = await response.text();
-                // 使用 marked.js 将 Markdown 转换为 HTML
-                document.getElementById('content').innerHTML = marked.parse(markdown);
-            } catch (error) {
-                console.error(error);
-                document.getElementById('content').innerHTML = "<p>无法加载文章内容，请稍后再试。</p>";
-            }
-        }
-    </script>
+ 
 </body>
 </html>
